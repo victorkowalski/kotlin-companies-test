@@ -87,7 +87,7 @@ class CompanyListFragment : Fragment() {
             if (plants != null) adapter.submitList(plants)
         })
      */
-    private fun retrieveCompanyList(users: List<Company>) {
+    private fun retrieveCompanyList(companies: List<Company>) {
         adapter.apply {
             addCompanies(companies)
             notifyDataSetChanged()

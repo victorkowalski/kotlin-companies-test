@@ -9,7 +9,7 @@ import com.victor.ko.companies.R
 import com.victor.ko.companies.data.model.Company
 import com.victor.ko.companies.ui.main.adapter.MainAdapter.DataViewHolder
 
-class MainAdapter(private val users: ArrayList<Company>) : RecyclerView.Adapter<DataViewHolder>() {
+class MainAdapter(private val companies: ArrayList<Company>) : RecyclerView.Adapter<DataViewHolder>() {
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -27,16 +27,16 @@ class MainAdapter(private val users: ArrayList<Company>) : RecyclerView.Adapter<
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder =
         DataViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item_company, parent, false))
 
-    override fun getItemCount(): Int = users.size
+    override fun getItemCount(): Int = companies.size
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        holder.bind(users[position])
+        holder.bind(companies[position])
     }
 
-    fun addUsers(users: List<Company>) {
-        this.users.apply {
+    fun addCompanies(companies: List<Company>) {
+        this.companies.apply {
             clear()
-            addAll(users)
+            addAll(companies)
         }
 
     }

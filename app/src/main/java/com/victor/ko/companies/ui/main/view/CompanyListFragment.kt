@@ -91,9 +91,9 @@ class CompanyListFragment : Fragment() {
     }
 
     private fun onClickCompany(item: Company) {
-        val direction = PlantListFragmentDirections.ActionPlantListFragmentToPlantDetailFragment(plantId)
+  /*      val direction = PlantListFragmentDirections.ActionPlantListFragmentToPlantDetailFragment(plantId)
         it.findNavController().navigate(direction)
-
+*/
         Toast.makeText(context, item.id.toString() + " is clicked", Toast.LENGTH_SHORT)
             .show()
     }

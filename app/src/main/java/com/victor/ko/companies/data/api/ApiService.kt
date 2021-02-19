@@ -5,7 +5,7 @@ import retrofit2.http.GET
 
 interface ApiService {
 
-    @GET("test_task/test.php")
+    @GET("test.php")
     suspend fun getCompanyList(): List<Company>
 
 }

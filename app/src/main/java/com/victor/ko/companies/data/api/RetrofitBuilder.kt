@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBuilder {
 
-    private const val BASE_URL = "https://lifehack.studio/"
+    const val BASE_URL = "https://lifehack.studio/test_task/"
 
     private val httpClient = OkHttpClient.Builder().build()
 

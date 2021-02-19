@@ -9,14 +9,18 @@
         android:id="@+id/company_list_fragment"
         android:name="com.victor.ko.companies.ui.main.view.CompanyListFragment"
         android:label="Company Title"
-        tools:layout="@layout/fragment_company_list" />
+        tools:layout="@layout/fragment_company_list" >
+        <action
+            android:id="@+id/action_company_list_fragment_to_company_detail_fragment"
+            app:destination="@id/company_detail_fragment"/>
+    </fragment>
     <fragment
         android:id="@+id/company_detail_fragment"
-        android:name="com.google.samples.apps.sunflower.PlantDetailFragment"
-        android:label="@string/plant_details_title"
-        tools:layout="@layout/fragment_plant_detail">
+        android:name="com.victor.ko.companies.ui.main.view.CompanyDetailFragment"
+        android:label="company details title"
+        tools:layout="@layout/fragment_company_detail">
         <argument
-            android:name="plantId"
+            android:name="companyId"
             app:argType="string" />
     </fragment>
 </navigation>

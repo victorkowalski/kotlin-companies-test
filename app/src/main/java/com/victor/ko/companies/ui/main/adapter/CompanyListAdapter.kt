@@ -10,9 +10,9 @@ import com.bumptech.glide.Glide
 import com.victor.ko.companies.R
 import com.victor.ko.companies.data.api.RetrofitBuilder
 import com.victor.ko.companies.data.model.Company
-import com.victor.ko.companies.ui.main.adapter.MainAdapter.DataViewHolder
+import com.victor.ko.companies.ui.main.adapter.CompanyListAdapter.DataViewHolder
 
-class MainAdapter(private val companies: ArrayList<Company>, private val onClickCompany: (Company) -> Unit)
+class CompanyListAdapter(private val companies: ArrayList<Company>, private val onClickCompany: (Company) -> Unit)
     : RecyclerView.Adapter<DataViewHolder>() {
 
     class DataViewHolder(itemView: View, private val onClickCompany: (Company) -> Unit)

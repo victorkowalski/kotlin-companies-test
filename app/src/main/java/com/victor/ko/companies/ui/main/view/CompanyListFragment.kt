@@ -8,22 +8,22 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.victor.ko.companies.data.api.ApiHelper
 import com.victor.ko.companies.data.api.RetrofitBuilder
 import com.victor.ko.companies.data.model.Company
-import com.victor.ko.companies.databinding.ActivityCompaniesBinding
 import com.victor.ko.companies.databinding.FragmentCompanyListBinding
 import com.victor.ko.companies.ui.base.ViewModelFactory
-import com.victor.ko.companies.ui.main.adapter.MainAdapter
-import com.victor.ko.companies.ui.main.viewmodel.MainViewModel
+import com.victor.ko.companies.ui.main.adapter.CompanyListAdapter
+import com.victor.ko.companies.ui.main.viewmodel.CompanyListViewModel
 import com.victor.ko.companies.utils.Status
 
 class CompanyListFragment : Fragment() {
 
-    private lateinit var viewModel: MainViewModel
-    private lateinit var adapter: MainAdapter
+    private lateinit var viewModel: CompanyListViewModel
+    private lateinit var adapter: CompanyListAdapter
 
     private var bnd: FragmentCompanyListBinding? = null
     // This property is only valid between onCreateView and onDestroyView.
@@ -44,12 +44,12 @@ class CompanyListFragment : Fragment() {
         viewModel = ViewModelProviders.of(
             this,
             ViewModelFactory(ApiHelper(RetrofitBuilder.apiService))
-        ).get(MainViewModel::class.java)
+        ).get(CompanyListViewModel::class.java)
     }
 
     private fun setupUI() {
         getBnd.companyList.layoutManager = LinearLayoutManager(context)
-        adapter = MainAdapter(arrayListOf(), ::onClickCompany)
+        adapter = CompanyListAdapter(arrayListOf(), ::onClickCompany)
         //val adapter = RecyclerViewAdapter(Data.getObjects(), ::adapterOnClick) //thisClass::adapterOnClick
         getBnd.companyList.addItemDecoration(
             DividerItemDecoration(
@@ -90,11 +90,12 @@ class CompanyListFragment : Fragment() {
         }
     }
 
-    private fun onClickCompany(item: Company) {
-  /*      val direction = PlantListFragmentDirections.ActionPlantListFragmentToPlantDetailFragment(plantId)
-        it.findNavController().navigate(direction)
-*/
-        Toast.makeText(context, item.id.toString() + " is clicked", Toast.LENGTH_SHORT)
-            .show()
+    private fun onClickCompany(company: Company) {
+
+        val direction = CompanyListFragmentDirections.actionCompanyListFragmentToCompanyDetailFragment(company.id!!)
+        findNavController().navigate(direction)
+/*
+        Toast.makeText(context, company.id.toString() + " is clicked", Toast.LENGTH_SHORT)
+            .show()*/
     }
 }

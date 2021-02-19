@@ -12,6 +12,6 @@ interface ApiService {
     suspend fun getCompanyList(): List<Company>
 
     @GET("test.php")
-    suspend fun getCompany(@Query("id") id : Int ): Company
+    suspend fun getCompanyDetail(@Query("id") id : String ): Company
 
 }

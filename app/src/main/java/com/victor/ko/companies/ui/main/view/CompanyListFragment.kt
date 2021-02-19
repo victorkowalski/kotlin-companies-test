@@ -49,7 +49,8 @@ class CompanyListFragment : Fragment() {
 
     private fun setupUI() {
         getBnd.companyList.layoutManager = LinearLayoutManager(context)
-        adapter = MainAdapter(arrayListOf())
+        adapter = MainAdapter(arrayListOf(), ::onClickCompany)
+        //val adapter = RecyclerViewAdapter(Data.getObjects(), ::adapterOnClick) //thisClass::adapterOnClick
         getBnd.companyList.addItemDecoration(
             DividerItemDecoration(
                 getBnd.companyList.context,
@@ -82,37 +83,18 @@ class CompanyListFragment : Fragment() {
         })
     }
 
-    /*
-    viewModel.getPlants().observe(viewLifecycleOwner, Observer { plants ->
-            if (plants != null) adapter.submitList(plants)
-        })
-     */
     private fun retrieveCompanyList(companies: List<Company>) {
         adapter.apply {
             addCompanies(companies)
             notifyDataSetChanged()
         }
     }
+
+    private fun onClickCompany(item: Company) {
+        val direction = PlantListFragmentDirections.ActionPlantListFragmentToPlantDetailFragment(plantId)
+        it.findNavController().navigate(direction)
+
+        Toast.makeText(context, item.id.toString() + " is clicked", Toast.LENGTH_SHORT)
+            .show()
+    }
 }
-/*
-super.onCreate(savedInstanceState)
-        setContentView(layout.activity_main)
-        setupViewModel()
-        setupUI()
-        setupObservers()
- */
-
-/*
-val binding = FragmentPlantListBinding.inflate(inflater, container, false)
-        val context = context ?: return binding.root
-
-        val factory = InjectorUtils.providePlantListViewModelFactory(context)
-        viewModel = ViewModelProviders.of(this, factory).get(PlantListViewModel::class.java)
-
-        val adapter = PlantAdapter()
-        binding.plantList.adapter = adapter
-        subscribeUi(adapter)
-
-        setHasOptionsMenu(true)
-        return binding.root
- */

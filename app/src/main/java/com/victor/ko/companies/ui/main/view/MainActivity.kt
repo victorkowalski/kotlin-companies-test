@@ -3,7 +3,6 @@ package com.victor.ko.companies.ui.main.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
 import com.victor.ko.companies.R
 import com.victor.ko.companies.databinding.ActivityCompaniesBinding
 
@@ -21,19 +20,5 @@ class MainActivity  : AppCompatActivity() {
 
         // Set up ActionBar
         setSupportActionBar(bnd.toolbar)
-        //NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
     }
-/*
-    override fun onSupportNavigateUp(): Boolean {
-        return NavigationUI.navigateUp(drawerLayout,
-            Navigation.findNavController(this, R.id.garden_nav_fragment))
-    }
-
-    override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
-    }*/
 }

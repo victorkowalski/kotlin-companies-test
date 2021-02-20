@@ -6,12 +6,12 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    ////https://lifehack.studio/test_task/test.php?id=1
+    //https://lifehack.studio/test_task/test.php?id=1
 
     @GET("test.php")
     suspend fun getCompanyList(): List<Company>
 
     @GET("test.php")
-    suspend fun getCompanyDetail(@Query("id") id : String ): Company
+    suspend fun getCompanyDetail(@Query("id") id : String ): List<Company>
 
 }

@@ -50,7 +50,7 @@ class CompanyListFragment : Fragment() {
     private fun setupUI() {
         getBnd.companyList.layoutManager = LinearLayoutManager(context)
         adapter = CompanyListAdapter(arrayListOf(), ::onClickCompany)
-        //val adapter = RecyclerViewAdapter(Data.getObjects(), ::adapterOnClick) //thisClass::adapterOnClick
+
         getBnd.companyList.addItemDecoration(
             DividerItemDecoration(
                 getBnd.companyList.context,
@@ -65,18 +65,25 @@ class CompanyListFragment : Fragment() {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        getBnd.companyList.visibility = View.VISIBLE
-                        getBnd.progressBar.visibility = View.GONE
+                        with(getBnd) {
+                            companyList.visibility = View.VISIBLE
+                            progressBar.visibility = View.GONE
+                        }
                         resource.data?.let { companies -> retrieveCompanyList(companies) }
                     }
                     Status.ERROR -> {
-                        getBnd.companyList.visibility = View.VISIBLE
-                        getBnd.progressBar.visibility = View.GONE
+                        with(getBnd) {
+                            companyList.visibility = View.VISIBLE
+                            progressBar.visibility = View.GONE
+                        }
+
                         Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
                     }
                     Status.LOADING -> {
-                        getBnd.progressBar.visibility = View.VISIBLE
-                        getBnd.companyList.visibility = View.GONE
+                        with(getBnd) {
+                            progressBar.visibility = View.VISIBLE
+                            companyList.visibility = View.GONE
+                        }
                     }
                 }
             }
@@ -91,11 +98,8 @@ class CompanyListFragment : Fragment() {
     }
 
     private fun onClickCompany(company: Company) {
-
         val direction = CompanyListFragmentDirections.actionCompanyListFragmentToCompanyDetailFragment(company.id!!)
         findNavController().navigate(direction)
-/*
-        Toast.makeText(context, company.id.toString() + " is clicked", Toast.LENGTH_SHORT)
-            .show()*/
+
     }
 }

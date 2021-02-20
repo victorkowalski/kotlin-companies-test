@@ -40,14 +40,6 @@ class CompanyListAdapter(private val companies: ArrayList<Company>, private val 
                 }
             }
         }
-/*
-        init {
-            itemView.setOnClickListener {
-                currentCompany?.let {
-                    onClickCompany(it)
-                }
-            }
-        }*/
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
